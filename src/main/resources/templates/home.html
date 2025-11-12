@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+                    
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Milano Store - Camisas de Times</title>
+  <link rel="stylesheet"  th:href="@{/css/style.css}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 🔝 HEADER -->
+    <header class="navbar">
+    <div class="container">
+
+        <div class="logo-site">
+            <h1 class="logo">Milano</h1>
+        </div>
+        <div class="input-search">
+            <input type="text" placeholder="Buscar camisas..." class="search">
+        </div>
+        <div class="usuario">
+
+            <!-- mostrar APENAS se o usuário NÃO estiver logado -->
+            <a sec:authorize="!isAuthenticated()" th:href="@{/cadastro}" class="login"><img src="https://img.icons8.com/?size=100&id=98957&format=png&color=FFFFFF"></a>
+            <!-- mostrar APENAS se o usuário estiver logado -->
+            <a sec:authorize="isAuthenticated()" th:href="@{/perfil}" class="perfil"><img src="https://img.icons8.com/?size=100&id=98957&format=png&color=FFFFFF"></a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/carrinho}" class="cart"><img src="https://img.icons8.com/?size=100&id=85383&format=png&color=FFFFFF"></a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="perfil"><img src="https://img.icons8.com/?size=100&id=59781&format=png&color=FFFFFF"></a>
+
+        </div>
+
+    </div>
+    <nav>
+      <a th:href="@{/home}">Home</a>
+      <a href="#">Brasileiros</a>
+      <a href="#">Internacionais</a>
+      <a href="#">Seleções</a>
+      <a href="#">Infatil</a>
+      <a href="#">Conjuntos</a>
+      <a href="#">Contato</a>
+    </nav>
+    </header>
+
+
+    <!-- 🎯 BANNER -->
+    <section class="banner">
+        <a href="#" class="banner-promocao"><img src="https://images.tcdn.com.br/img/img_prod/682510/1566260087_banner.camiasselecaonike.png"></a>
+    </section>
+
+
+
+    <!-- 🏆 SEÇÃO DE PRODUTOS -->
+    <section class="products-section">
+        <h4>Camisas Brasileiras</h4>
+        <div class="products">
+            <div th:each="produto : ${brasileiras}" class="product-card">
+                <img th:src="${produto.imagemUrl}" th:alt="${produto.nome}">
+                <h3 th:text="${produto.nome}"></h3>
+                <p th:text="'R$ ' + ${#numbers.formatDecimal(produto.preco, 1, 2)}"></p>
+
+                <form th:action="@{/carrinho/adicionar}" method="post">
+                    <input type="hidden" name="produtoId" th:value="${produto.id}">
+                    <button type="submit">Comprar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="products-section">
+        <h4>Camisas Internacionais</h4>
+        <div class="products">
+            <div th:each="produto : ${internacionais}" class="product-card">
+                <img th:src="${produto.imagemUrl}" th:alt="${produto.nome}">
+                <h3 th:text="${produto.nome}"></h3>
+                <p th:text="'R$ ' + ${#numbers.formatDecimal(produto.preco, 1, 2)}"></p>
+
+                <form th:action="@{/carrinho/adicionar}" method="post">
+                    <input type="hidden" name="produtoId" th:value="${produto.id}">
+                    <button type="submit">Comprar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- 🏆 PROMOÇÃO -->
+    <section class="promocao">
+        <a href="#" class="promocao-one">
+            <img src="https://img.cdndsgni.com/preview/10576718.jpg">
+        </a>
+        <a href="#" class="promocao-two">
+            <img src="https://img.cdndsgni.com/preview/10590067.jpg">
+        </a>
+        <a href="#" class="promocao-two">
+            <img src="https://img.cdndsgni.com/preview/10286004.jpg">
+        </a>
+    </section>
+
+
+
+
+    <section class="products-section">
+        <h4>Camisas Seleções</h4>
+        <div class="products">
+            <div th:each="produto : ${selecoes}" class="product-card">
+                <img th:src="${produto.imagemUrl}" th:alt="${produto.nome}">
+                <h3 th:text="${produto.nome}"></h3>
+                <p th:text="'R$ ' + ${#numbers.formatDecimal(produto.preco, 1, 2)}"></p>
+
+                <form th:action="@{/carrinho/adicionar}" method="post">
+                    <input type="hidden" name="produtoId" th:value="${produto.id}">
+                    <button type="submit">Comprar</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+
+
+    
+    <section class="promocao-last">
+        <a href="#" class="promocao-three">
+            <img src="https://d2r9epyceweg5n.cloudfront.net/stores/001/413/168/rte/bannercomputador.jpg">
+        </a>
+    </section>
+
+    <!-- 📱 RODAPÉ -->
+    <footer>
+    <div class="footer-content">
+      <div>
+        <h3>Milano</h3>
+        <p>As melhores camisas de futebol do Brasil e do mundo.</p>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <p>contato@milano.com</p>
+        <p>WhatsApp: (11) 99999-9999</p>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 Milano Store - Todos os direitos reservados</p>
+    </footer>
+
+</body>
+</html>

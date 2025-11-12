@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu Carrinho | Milano</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🔝 HEADER -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo-site">
+        <h1 class="logo">Milano</h1>
+      </div>
+      <div class="input-search">
+        <input type="text" placeholder="Buscar camisas..." class="search">
+      </div>
+      <div class="usuario">
+        <a sec:authorize="!isAuthenticated()" th:href="@{/cadastro}" class="login">
+          <img src="https://img.icons8.com/?size=100&id=98957&format=png&color=FFFFFF">
+        </a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/perfil}" class="perfil">
+          <img src="https://img.icons8.com/?size=100&id=98957&format=png&color=FFFFFF">
+        </a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/carrinho}" class="cart">
+          <img src="https://img.icons8.com/?size=100&id=85383&format=png&color=FFFFFF">
+        </a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="perfil">
+          <img src="https://img.icons8.com/?size=100&id=59781&format=png&color=FFFFFF">
+        </a>
+      </div>
+    </div>
+
+    <nav>
+      <a th:href="@{/home}">Home</a>
+      <a href="#">Brasileiros</a>
+      <a href="#">Internacionais</a>
+      <a href="#">Seleções</a>
+      <a href="#">Infantil</a>
+      <a href="#">Conjuntos</a>
+      <a href="#">Contato</a>
+    </nav>
+  </header>
+
+  <!-- 🛒 CARRINHO -->
+  <section class="carrinho">
+    <h2>Seu Carrinho</h2>
+
+    <div class="carrinho-container">
+      <!-- Verifica se o carrinho está vazio -->
+      <div th:if="${#lists.isEmpty(carrinho)}">
+        <p>Seu carrinho está vazio 😢</p>
+      </div>
+
+      <!-- Lista os itens do carrinho -->
+      <div th:each="item : ${carrinho}" class="carrinho-item">
+        <img th:src="${item.produto.imagemUrl}" th:alt="${item.produto.nome}">
+        <div class="item-info">
+          <h3 th:text="${item.produto.nome}"></h3>
+          <p>Tamanho: M</p> <!-- por enquanto fixo -->
+          <p class="preco" th:text="'R$ ' + ${#numbers.formatDecimal(item.produto.preco, 1, 2)}"></p>
+        </div>
+        <div class="item-actions">
+          <input type="number" th:value="${item.quantidade}" min="1" readonly>
+          <form th:action="@{/remover}" method="post" style="display:inline;">
+            <input type="hidden" name="produtoId" th:value="${item.produto.id}">
+            <button type="submit" class="btn-remover">Remover</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESUMO -->
+    <div class="resumo-carrinho" th:if="${!#lists.isEmpty(carrinho)}">
+      <h3>Resumo da Compra</h3>
+      <p>Subtotal: <span th:text="'R$ ' + ${#numbers.formatDecimal(total, 1, 2)}"></span></p>
+      <p>Frete: <span>R$ 0,00</span></p>
+      <hr>
+      <h4>Total: <span th:text="'R$ ' + ${#numbers.formatDecimal(total, 1, 2)}"></span></h4>
+      <a th:href="@{/checkout}"><button class="btn-finalizar">Finalizar Compra</button></a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div>
+        <h3>Milano</h3>
+        <p>As melhores camisas de futebol do Brasil e do mundo.</p>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <p>contato@milano.com</p>
+        <p>WhatsApp: (11) 99999-9999</p>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 Milano Store - Todos os direitos reservados</p>
+  </footer>
+
+</body>
+</html>

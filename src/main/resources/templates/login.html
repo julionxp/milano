@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Milano Store</title>
+  <link rel="stylesheet"  th:href="@{/css/style.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="navbar">
+    <div class="container">
+        <div class="logo-site">
+            <h1 class="logo">Milano</h1>
+        </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO -->
+  <section class="cadastro-container">
+    <div class="cadastro-card">
+      <h2>Login</h2>
+      <p>Entre em sua conta.</p>
+
+      <form th:action="@{/login}" method="post" class="form-cadastro">
+
+        <div class="input-group">
+          <label for="email">E-mail</label>
+          <input type="text" name="username" placeholder="E-mail" required>
+        </div>
+
+        <div class="input-group">
+          <label for="senha">Senha</label>
+          <input type="password" name="password" placeholder="Senha" required>
+        </div>
+
+        <button type="submit" class="btn-cadastrar">Entrar</button> <br><br><br>
+
+        <p th:if="${param.error}" style="color:red">Usuário ou senha inválidos</p>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p class="footer-copy">© 2025 Milano Store - Todos os direitos reservados</p>
+  </footer>
+
+</body>
+</html>

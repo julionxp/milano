@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu Perfil - Milano Sports</title>
+  <link rel="stylesheet"  th:href="@{/css/style.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 🔝 HEADER -->
+    <header class="navbar">
+    <div class="container">
+
+        <div class="logo-site">
+            <h1 class="logo">Milano</h1>
+        </div>
+        <div class="input-search">
+            <input type="text" placeholder="Buscar camisas..." class="search">
+        </div>
+        <div class="usuario">
+
+            <!-- mostrar APENAS se o usuário NÃO estiver logado -->
+            <a sec:authorize="!isAuthenticated()" th:href="@{/cadastro}" class="login"><img src="https://img.icons8.com/?size=100&id=98957&format=png&color=FFFFFF"></a>
+            <!-- mostrar APENAS se o usuário estiver logado -->
+            <a sec:authorize="isAuthenticated()" th:href="@{/perfil}" class="perfil"><img src="https://img.icons8.com/?size=100&id=98957&format=png&color=FFFFFF"></a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/carrinho}" class="cart"><img src="https://img.icons8.com/?size=100&id=85383&format=png&color=FFFFFF"></a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="perfil"><img src="https://img.icons8.com/?size=100&id=59781&format=png&color=FFFFFF"></a>
+
+        </div>
+
+    </div>
+    <nav>
+      <a th:href="@{/home}">Home</a>
+      <a href="#">Brasileiros</a>
+      <a href="#">Internacionais</a>
+      <a href="#">Seleções</a>
+      <a href="#">Infatil</a>
+      <a href="#">Conjuntos</a>
+      <a href="#">Contato</a>
+    </nav>
+    </header>
+
+  <main class="perfil-container">
+    <div class="perfil-card">
+      <h2>Minha Conta</h2>
+      <p>Gerencie suas informações pessoais e endereço de entrega.</p>
+
+  <form class="form-perfil" th:object="${usuario}" th:action="@{/perfil/atualizar}" method="post">
+    
+    <input type="hidden" th:field="*{id}">
+    
+    <div class="input-group">
+      <h3>Informações Pessoais</h3>
+
+          <label for="nome">Nome completo</label>
+          <input type="text" th:field="*{nome}" placeholder="Ex: João Silva">
+
+          <label for="email">E-mail</label>
+          <input type="email" th:field="*{email}" readonly>
+
+          <label for="senha">Senha</label>
+          <input type="password" th:field="*{senha}" placeholder="********" readonly>
+        </div>
+
+    
+        <div class="input-group">
+          <h3>Endereço</h3>
+          <label for="rua">Rua</label>
+          <input type="text" th:field="*{endereco.rua}" placeholder="Ex: Rua das Palmeiras">
+
+          <label for="numero">Número</label>
+          <input type="text" th:field="*{endereco.numero}" placeholder="Ex: 123">
+
+          <label for="numero">Apt</label>
+          <input type="text" th:field="*{endereco.apartamento}" placeholder="Ex: Casa 4">
+
+          <label for="cidade">Cidade</label>
+          <input type="text" th:field="*{endereco.cidade}" placeholder="Ex: São Paulo">
+
+          <label for="estado">Estado</label>
+          <input type="text" th:field="*{endereco.estado}" placeholder="Ex: SP">
+
+          <label for="cep">CEP</label>
+          <input type="text" th:field="*{endereco.cep}" placeholder="Ex: 00000-000">
+        </div>
+
+        <button type="submit" class="btn-salvar">Salvar Alterações</button>
+
+        <p th:if="${mensagemSucesso}" th:text="${mensagemSucesso}" style="color:green"></p>
+
+      </form>
+    </div>
+  </main>
+
+    <footer>
+    <div class="footer-content">
+      <div>
+        <h3>Milano</h3>
+        <p>As melhores camisas de futebol do Brasil e do mundo.</p>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <p>contato@milano.com</p>
+        <p>WhatsApp: (11) 99999-9999</p>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 Milano Store - Todos os direitos reservados</p>
+    </footer>
+
+</body>
+</html>

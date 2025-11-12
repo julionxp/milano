@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar Compra - Milano Sports</title>
+  <link rel="stylesheet"  th:href="@{/css/style.css}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+    <header class="navbar">
+    <div class="container">
+
+        <div class="logo-site">
+            <h1 class="logo">Milano</h1>
+        </div>
+        <div class="input-search">
+            <input type="text" placeholder="Buscar camisas..." class="search">
+        </div>
+        <div class="usuario">
+            <a sec:authorize="!isAuthenticated()" th:href="@{/cadastro}" class="login">
+                <img src="https://img.icons8.com/?size=100&id=98957&format=png&color=FFFFFF">
+            </a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/perfil}" class="perfil">
+                <img src="https://img.icons8.com/?size=100&id=98957&format=png&color=FFFFFF">
+            </a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/carrinho}" class="cart">
+                <img src="https://img.icons8.com/?size=100&id=85383&format=png&color=FFFFFF">
+            </a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="perfil">
+                <img src="https://img.icons8.com/?size=100&id=59781&format=png&color=FFFFFF">
+            </a>
+        </div>
+
+    </div>
+    <nav>
+      <a th:href="@{/home}">Home</a>
+      <a href="#">Brasileiros</a>
+      <a href="#">Internacionais</a>
+      <a href="#">Seleções</a>
+      <a href="#">Infatil</a>
+      <a href="#">Conjuntos</a>
+      <a href="#">Contato</a>
+    </nav>
+    </header>
+
+  <!-- CHECKOUT -->
+  <main class="checkout-container">
+    <div class="checkout-card">
+      <h2>Finalizar Compra</h2>
+      <p>Revise seus dados e escolha a forma de pagamento.</p>
+
+      <form class="form-checkout">
+
+        <!-- ENDEREÇO -->
+        <div class="checkout-section">
+          <h3>Endereço de Entrega</h3>
+          <label for="rua">Rua</label>
+          <input type="text" id="rua" placeholder="Ex: Rua das Palmeiras">
+
+          <label for="numero">Número</label>
+          <input type="text" id="numero" placeholder="Ex: 123">
+
+          <label for="cidade">Cidade</label>
+          <input type="text" id="cidade" placeholder="Ex: São Paulo">
+
+          <label for="estado">Estado</label>
+          <input type="text" id="estado" placeholder="Ex: SP">
+
+          <label for="cep">CEP</label>
+          <input type="text" id="cep" placeholder="Ex: 00000-000">
+        </div>
+
+        <!-- PAGAMENTO -->
+        <div class="checkout-section">
+          <h3>Forma de Pagamento</h3>
+          <div class="payment-options">
+            <label><input type="radio" name="pagamento" checked> Cartão de Crédito</label>
+            <label><input type="radio" name="pagamento"> Pix</label>
+            <label><input type="radio" name="pagamento"> Boleto Bancário</label>
+          </div>
+
+          <div class="card-info">
+            <label for="nome-cartao">Nome no Cartão</label>
+            <input type="text" id="nome-cartao" placeholder="Ex: João Silva">
+
+            <label for="numero-cartao">Número do Cartão</label>
+            <input type="text" id="numero-cartao" placeholder="0000 0000 0000 0000">
+
+            <div class="card-row">
+              <div>
+                <label for="validade">Validade</label>
+                <input type="text" id="validade" placeholder="MM/AA">
+              </div>
+              <div>
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" placeholder="***">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESUMO -->
+        <div class="checkout-section resumo">
+          <h3>Resumo do Pedido</h3>
+          <p><span>Produto 1</span> <strong>R$ 120,00</strong></p>
+          <p><span>Produto 2</span> <strong>R$ 80,00</strong></p>
+          <hr>
+          <p><span>Frete</span> <strong>R$ 20,00</strong></p>
+          <hr>
+          <p class="total"><span>Total</span> <strong>R$ 220,00</strong></p>
+        </div>
+
+        <button type="submit" class="btn-finalizar">Confirmar Pagamento</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+    <footer>
+    <div class="footer-content">
+      <div>
+        <h3>Milano</h3>
+        <p>As melhores camisas de futebol do Brasil e do mundo.</p>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <p>contato@milano.com</p>
+        <p>WhatsApp: (11) 99999-9999</p>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 Milano Store - Todos os direitos reservados</p>
+    </footer>
+
+</body>
+</html>

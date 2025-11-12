@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resultados da Busca - Milano Store</title>
+  <link rel="stylesheet"  th:href="@{/css/style.css}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🔝 HEADER -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo-site">
+        <h1 class="logo">Milano</h1>
+      </div>
+      <div class="input-search">
+        <input type="text" placeholder="Buscar camisas..." class="search">
+      </div>
+      <div class="usuario">
+        <a href="login.html"><img src="https://img.icons8.com/?size=100&id=98957&format=png&color=FFFFFF"></a>
+        <a href="carrinho.html"><img src="https://img.icons8.com/?size=100&id=85383&format=png&color=FFFFFF"></a>
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Brasileiros</a>
+      <a href="#">Internacionais</a>
+      <a href="#">Seleções</a>
+      <a href="#">Infantil</a>
+      <a href="#">Conjuntos</a>
+      <a href="#">Contato</a>
+    </nav>
+  </header>
+
+  <!-- 🔍 RESULTADOS -->
+  <section class="products-section">
+    <h4>Resultados para: “Flamengo”</h4>
+    <div class="products">
+      <div class="product-card">
+        <img src="https://acdn-us.mitiendanube.com/stores/002/322/390/products/camisa-flamengo-home1-7d48f68bc5a146987917422432415116-1024-1024.webp" alt="Camisa Flamengo">
+        <h3>Camisa Flamengo 24/25</h3>
+        <p>R$ 189,90</p>
+        <button>Comprar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 📱 FOOTER -->
+    <footer>
+    <div class="footer-content">
+      <div>
+        <h3>Milano</h3>
+        <p>As melhores camisas de futebol do Brasil e do mundo.</p>
+      </div>
+      <div>
+        <h4>Atendimento</h4>
+        <p>contato@milano.com</p>
+        <p>WhatsApp: (11) 99999-9999</p>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Twitter</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 Milano Store - Todos os direitos reservados</p>
+    </footer>
+
+</body>
+</html>
